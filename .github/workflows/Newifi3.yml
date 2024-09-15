@@ -1,4 +1,4 @@
-name: IPQ60XX-NOWIFI
+name: Newifi3-MTKoffload
 
 on:
   workflow_dispatch:
