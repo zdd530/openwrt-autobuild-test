@@ -7,7 +7,7 @@ on:
 
 env:
   REPO_URL: https://github.com/MeIsReallyBa/immortalwrt-mt798x.git
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-21.02
   CONFIG_FILE: configs/mt7986.config
   DIY_SCRIPT: diy-script.sh
   FEEDS_CONF: feeds.conf.default
