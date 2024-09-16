@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/MeIsReallyBa/immortalwrt-mt798x.git
   REPO_BRANCH: master
   CONFIG_FILE: configs/mt7986.config
-  DIY_SCRIPT: redmi-ax6000.sh
+  DIY_SCRIPT: diy-script.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
