@@ -10,6 +10,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: configs/Newifi3-d2.config
   DIY_SCRIPT: diy-newifi3.sh
+  FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
@@ -98,6 +99,7 @@ jobs:
     
     - name: Install Feeds(安装feeds)
       run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF $OPENWRT_PATH/feeds.conf.default
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
