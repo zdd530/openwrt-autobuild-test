@@ -10,7 +10,7 @@
 
 ## 项目说明 [![](https://img.shields.io/badge/-项目基本介绍-FFFFFF.svg)](#项目说明-)
 - 固件默认用户：`root` 默认密码：`password`
-- 云编译源码：https://github.com/breeze303/openwrt-6.x.git
+- 云编译源码：https://github.com/breeze303/openwrt-ci
 - 云编译源码：https://github.com/haiibo/OpenWrt
 - 云编译源码：https://github.com/KevinMX/Railgun
 
