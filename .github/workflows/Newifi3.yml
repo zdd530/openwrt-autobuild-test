@@ -3,7 +3,7 @@ name: Newifi3-MTKoffload
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 19 * * *
+    - cron: 0 21 * * *
 
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt.git
