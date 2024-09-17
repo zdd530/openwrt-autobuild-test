@@ -8,14 +8,14 @@ on:
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x.git
   REPO_BRANCH: openwrt-21.02
-  CONFIG_FILE: configs/mt7986.config
-  DIY_SCRIPT: diy-mt7986.sh
+  CONFIG_FILE: configs/mt7981.config
+  DIY_SCRIPT: diy-mt7981.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: redmi-ax6000
+  FIRMWARE_TAG: mt7981
   TZ: Asia/Shanghai
 
 jobs:
