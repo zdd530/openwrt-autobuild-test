@@ -1,4 +1,4 @@
-name: redmi-ax6000
+name: 360-t7
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x.git
   REPO_BRANCH: openwrt-21.02
   CONFIG_FILE: configs/mt7981.config
-  DIY_SCRIPT: diy-mt7986.sh
+  DIY_SCRIPT: diy-mt7981.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
@@ -159,12 +159,12 @@ jobs:
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
-          ### 📒 固件信息(redmi-ax6000)
-          - redmi-ax6000带MTK_OFFLOAD的固件
+          ### 📒 固件信息(360-t7)
+          - 360-t7带MTK_OFFLOAD的固件，带openclash、zerotier
           - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 immortalwrt 固件
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🌐 默认地址: 192.168.6.1
+          - 🌐 默认地址: 192.168.10.1
           - 🔑 默认密码: password
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
