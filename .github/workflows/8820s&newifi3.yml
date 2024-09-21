@@ -1,4 +1,4 @@
-name: lede-mt7621-hwnat
+name: 8820s-hwnat
 
 on:
   workflow_dispatch:
@@ -6,11 +6,12 @@ on:
     - cron: 0 20 * * *
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede.git
+  REPO_URL: https://github.com/padavanonly/immortalwrt.git
   REPO_BRANCH: master
   CONFIG_FILE: configs/8820s&newifi3.config
   DIY_SCRIPT: diy-newifi3.sh
   FEEDS_CONF: feeds.conf.default
+  SYS_PATCH: patches/0001-ZTE-E8820S-and-Newifi-D2-modification.patch
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
@@ -108,7 +109,15 @@ jobs:
         ccache: false
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
-        
+
+
+    - name: Apply Patch（应用hwnat补丁）
+      run: |
+        [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
+        cd $OPENWRT_PATH
+        git apply modification.patch
+
+
     - name: Compile Firmware(开始编译固件)
       id: compile
       run: |
@@ -160,7 +169,7 @@ jobs:
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
           ### 📒 固件信息(8820s&Newifi3闭源固件)
-          - LEDE带hwnat的固件
+          - 8820s带hwnat的固件
           - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 immortalwrt 固件
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
