@@ -1,21 +1,21 @@
-name: Newifi3-MTKoffload
+name: lede-mt7621-hwnat
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 21 * * *
+    - cron: 0 20 * * *
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt.git
+  REPO_URL: https://github.com/coolsnowwolf/lede.git
   REPO_BRANCH: master
-  CONFIG_FILE: configs/Newifi3-d2.config
+  CONFIG_FILE: configs/8820s&newifi3.config
   DIY_SCRIPT: diy-newifi3.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: Newifi3
+  FIRMWARE_TAG: 8820s&newifi3
   TZ: Asia/Shanghai
 
 jobs:
