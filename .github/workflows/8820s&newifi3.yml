@@ -113,6 +113,7 @@ jobs:
     - name: Apply Patch（应用hwnat补丁）
       run: |
         [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
+        cd $OPENWRT_PATH
         git apply modification.patch
        
     - name: Compile Firmware(开始编译固件)
