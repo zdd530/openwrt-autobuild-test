@@ -1,3 +1,4 @@
+# from https://github.com/jin3014test1/Actions-OpenWrt/blob/main/zte-e8820s-nand-kms-ddns-openwrt-23_05.config
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_zte_e8820s=y
