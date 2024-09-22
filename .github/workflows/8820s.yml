@@ -6,17 +6,17 @@ on:
     - cron: 0 20 * * *
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt.git
+  REPO_URL: https://github.com/openwrt/openwrt.git
   REPO_BRANCH: master
   CONFIG_FILE: configs/8820s.config
-  DIY_SCRIPT: diy-newifi3.sh
+  DIY_SCRIPT: diy-8820s.sh
   FEEDS_CONF: feeds.conf.default
-  SYS_PATCH: patches/0001-ZTE-E8820S-and-Newifi-D2-modification.patch
+  SYS_PATCH: patches/0001-master-Add-ZTE-E8820S-with-MTK-SDK-partition-support.patch
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: 8820s&newifi3
+  FIRMWARE_TAG: 8820s
   TZ: Asia/Shanghai
 
 jobs:
@@ -115,8 +115,8 @@ jobs:
       run: |
         [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
         cd $OPENWRT_PATH
-        git apply modification.patch
-
+        patch -p1 -N < modification.patch
+        rm  modification.patch 
 
     - name: Compile Firmware(开始编译固件)
       id: compile
@@ -168,9 +168,9 @@ jobs:
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
-          ### 📒 固件信息(8820s&Newifi3闭源固件)
+          ### 📒 固件信息(8820s闭源固件)
           - 8820s带hwnat的固件
-          - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 immortalwrt 固件
+          - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 openwrt 固件
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
           - 🌐 默认地址: 192.168.9.1
