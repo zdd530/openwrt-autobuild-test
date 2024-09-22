@@ -6,7 +6,7 @@ on:
     - cron: 0 20 * * *
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt.git
+  REPO_URL: https://github.com/jessehoo89/immortalwrt.git
   REPO_BRANCH: master
   CONFIG_FILE: configs/8820s.config
   DIY_SCRIPT: diy-8820s.sh
@@ -111,12 +111,12 @@ jobs:
         prefix: ${{ env.OPENWRT_PATH }}
 
 
-    - name: Apply Patch（应用hwnat补丁）
-      run: |
-        [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
-        cd $OPENWRT_PATH
-        patch -p1 -N < modification.patch
-        rm  modification.patch 
+   # - name: Apply Patch（应用hwnat补丁）
+   #   run: |
+   #     [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
+   #     cd $OPENWRT_PATH
+   #     patch -p1 -N < modification.patch
+   #     rm  modification.patch 
 
     - name: Compile Firmware(开始编译固件)
       id: compile
