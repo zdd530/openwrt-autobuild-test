@@ -6,8 +6,8 @@ on:
     - cron: 0 21 * * *
 
 env:
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x.git
-  REPO_BRANCH: openwrt-21.02
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-23.05.git
+  REPO_BRANCH: openwrt-23.05
   CONFIG_FILE: configs/mt7986.config
   DIY_SCRIPT: diy-mt7986.sh
   FEEDS_CONF: feeds.conf.default
