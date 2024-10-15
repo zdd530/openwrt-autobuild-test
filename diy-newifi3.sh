@@ -14,6 +14,7 @@
 
 # Clean up dependencies
 # find feeds -name Makefile -exec dirname {} \; | grep -wE 'gn|chinadns-ng|dns2socks|dns2tcp|hysteria|ipt2socks|microsocks|naiveproxy|redsocks2|shadowsocks-rust|shadowsocksr-libev|simple-obfs|sing-box|ssocks|tcping|trojan|v2ray-core|v2ray-geodata|v2ray-plugin|v2raya|xray-core|xray-plugin|lua-neturl|luci-app-ssr-plus|kuci-app-mosdns|mosdns' | xargs rm -rf
+rm -rf feeds/package/luci-app-passwall
 
 # Modify Default IP
 sed -i 's/192.168.1.1/192.168.9.1/g' package/base-files/files/bin/config_generate
@@ -24,6 +25,8 @@ sed -i 's/192.168.1.1/192.168.9.1/g' package/base-files/files/bin/config_generat
 # Use sbwml/luci-app-mosdns master
 # git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/mosdns
 # git clone --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 
 # Update Go to 1.20 for Xray-core build
 # rm -rf feeds/packages/lang/golang
