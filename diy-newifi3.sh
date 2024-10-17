@@ -32,5 +32,5 @@ sed -i 's/192.168.1.1/192.168.9.1/g' package/base-files/files/bin/config_generat
 # Update Go to 1.20 for Xray-core build
 # rm -rf feeds/packages/lang/golang
 # git_sparse_clone https://github.com/openwrt/packages master packages-upstream lang/golang feeds/packages/lang/golang
-./scripts/feeds update -a
-./scripts/feeds install -a
+# ./scripts/feeds update -a
+# ./scripts/feeds install -a
