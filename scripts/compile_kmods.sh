@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KERNEL_DIR="package/kernel/linux"
+KERNEL_DIR="package/kernel/linux/modules"
 for d in "$KERNEL_DIR"/*; do
   if [[ -d "$d" ]]; then
     echo "Compiling $d..."
