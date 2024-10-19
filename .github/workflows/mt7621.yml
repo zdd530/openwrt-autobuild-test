@@ -91,6 +91,7 @@ jobs:
     - name: Compile Firmware (开始编译kmod)
       run: |
         [ -e $KMODS_SCRIPT ] && mv $KMODS_SCRIPT $OPENWRT_PATH/compile_kmods.sh
+        cd $OPENWRT_PATH
         chmod +x compile_kmods.sh
         ./compile_kmods.sh
 
