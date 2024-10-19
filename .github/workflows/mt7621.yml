@@ -1,4 +1,4 @@
-name: Newifi3-MTKoffload
+name: mt7621-mtkSDK
 
 on:
   workflow_dispatch:
