@@ -9,12 +9,9 @@ if [ ! -d "$KERNEL_DIR" ]; then
   exit 1
 fi
 
-# 切换到内核模块目录
-cd "$KERNEL_DIR" || { echo "Error: Failed to change directory to $KERNEL_DIR"; exit 1; }
-
 # 编译内核模块
 echo "Compiling kernel modules..."
-if ! make -j$(nproc) V=s; then
+if ! make V=s ./package/kernel/linux/{clean,compile}; then
   echo "Error: Failed to compile kernel modules."
   exit 1
 fi
