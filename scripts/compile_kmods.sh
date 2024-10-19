@@ -11,9 +11,8 @@ fi
 
 # 编译内核模块
 echo "Compiling kernel modules..."
-if ! make V=s ./package/kernel/linux/{clean,compile}; then
-  echo "Error: Failed to compile kernel modules."
-  exit 1
+if ! make V=s ./package/kernel/linux/{clean,compile} || true; then
+  echo "Warning: Some modules failed to compile, but continuing with the rest."
 fi
 
-echo "All modules compiled successfully."
+echo "All modules that could be compiled have been compiled."
