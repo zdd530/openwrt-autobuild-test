@@ -122,7 +122,7 @@ jobs:
         mkdir -p kmods
         mv -f $OPENWRT_PATH/bin/targets/ramips/mt7621/packages/* kmods
         tar -zcf kmods.tar.gz kmods
-        rm -rf packages feeds.buildinfo version.buildinfo
+        rm -rf packages feeds.buildinfo version.buildinfo kmods
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
         
         
@@ -130,7 +130,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: ${{ env.SOURCE_REPO }}-firmware-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE_PATH }}/kmods.tar.gz
+        path: ${{ env.FIRMWARE_PATH }}
 
     - name: Upload kmod To Release(发布kmod)
       uses: ncipollo/release-action@v1
