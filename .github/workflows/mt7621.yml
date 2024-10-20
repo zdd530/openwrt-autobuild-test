@@ -121,17 +121,10 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: Upload Bin Directory(上传固件)
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      uses: actions/upload-artifact@main
-      with:
-        name: ${{ env.SOURCE_REPO }}-bin-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
-        path: ${{ env.OPENWRT_PATH }}/bin
-
     - name: Organize Files(整理文件)
       if: steps.compile.outputs.status == 'success'
       run: |
-        mv -r staging_dir/target-mipsel_24kc_musl/lib/modules/5.10.109/kernel/* kmods
+        mv -r staging_dir//home/runner/work/openwrt-autobuild/openwrt-autobuild/openwrt/bin/targets/ramips/mt7621/packages/* kmods
         tar -zcf kmods.tar.gz kmods
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
