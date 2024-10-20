@@ -143,7 +143,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: ${{ env.SOURCE_REPO }}-packages-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE_PATH }}/packages.tar.gz
+        path: ${{ env.FIRMWARE_PATH }}/Packages.tar.gz
 
     - name: Upload kmod To Release(发布kmod)
       uses: ncipollo/release-action@v1
