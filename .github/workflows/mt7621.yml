@@ -109,11 +109,11 @@ jobs:
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
               
-    - name: Compile Firmware (开始编译kmod)
+    - name: Compile Kmod (开始编译kmod)
       run: |
         cd $OPENWRT_PATH
         # 生成key
-        ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c
+        ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c openwrt
         # 编译内核
         make -j$(nproc) target/linux/{clean,compile} LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         # 编译内核模块
