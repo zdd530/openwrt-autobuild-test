@@ -16,7 +16,7 @@ fi
 
 # 编译内核模块
 echo "Compiling kernel modules..."
-make -j$(nproc) -k "$KERNEL_DIR"/compile V=s
+make -j$(nproc) -k LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 "$KERNEL_DIR"/compile V=s
 
 make "$KERNEL_DIR"/index
 
