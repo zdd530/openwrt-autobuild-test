@@ -115,9 +115,9 @@ jobs:
         # 生成key
         ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c openwrt
         # 编译内核
-        make -j$(nproc) target/linux/{clean,compile} LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
+        make -j17 target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         # 编译内核模块
-        make -j$(nproc) LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 ./package/kernel/linux/{clean,compile}
+        make V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 ./package/kernel/linux/{clean,compile}
         make $OPENWRT_PATH/bin/targets/ramips/mt7621/packages/index
         echo "All modules have been compiled."
 
