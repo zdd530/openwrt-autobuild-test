@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "my key"
+
 # 编译内核
 make -j17 target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
 
@@ -15,5 +17,7 @@ fi
 # 编译内核模块
 echo "Compiling kernel modules..."
 make -j$(nproc) -k "$KERNEL_DIR"/compile V=s
+
+make "$KERNEL_DIR"/index
 
 echo "All modules that could be compiled have been compiled."
