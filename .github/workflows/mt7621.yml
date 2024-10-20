@@ -119,8 +119,6 @@ jobs:
         # 编译内核模块
         make V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 ./package/kernel/linux/{clean,compile}
         cd $OPENWRT_PATH/bin/targets/ramips/mt7621/packages
-        ../../../scripts/ipkg-make-index.sh ./ > ./Packages
-        gzip -9c ./Packages > ./Packages.gz
         echo "All modules have been compiled."
 
     - name: Organize Files(整理文件)
