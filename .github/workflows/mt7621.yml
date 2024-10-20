@@ -133,7 +133,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: ${{ env.SOURCE_REPO }}-firmware-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE_PATH }}
+        path: ${{ env.FIRMWARE_PATH }}/kmods.tar.gz
 
     - name: Upload Firmware To Release(发布固件)
       uses: ncipollo/release-action@v1
