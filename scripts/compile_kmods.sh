@@ -11,8 +11,6 @@ fi
 
 # 编译内核模块
 echo "Compiling kernel modules..."
-if ! make V=s ./package/kernel/linux/{clean,compile} || true; then
-  echo "Warning: Some modules failed to compile, but continuing with the rest."
-fi
+make -j$(nproc) -k -C "$KERNEL_DIR" compile V=s
 
 echo "All modules that could be compiled have been compiled."
