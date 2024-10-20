@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 编译内核
+make -j17 target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
+
 # 定义内核模块目录
 KERNEL_DIR="package/kernel/linux"
 
