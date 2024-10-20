@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c "my key"
+./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c
 
 # 编译内核
 make -j17 target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
