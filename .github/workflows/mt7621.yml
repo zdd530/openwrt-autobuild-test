@@ -123,7 +123,8 @@ jobs:
 
     - name: Organize Files(整理文件)
       run: |
-        mv -r staging_dir//home/runner/work/openwrt-autobuild/openwrt-autobuild/openwrt/bin/targets/ramips/mt7621/packages/* kmods
+        mkdir -p kmods
+        mv -v staging_dir//home/runner/work/openwrt-autobuild/openwrt-autobuild/openwrt/bin/targets/ramips/mt7621/packages/* kmods
         tar -zcf kmods.tar.gz kmods
         rm -rf packages feeds.buildinfo version.buildinfo
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
