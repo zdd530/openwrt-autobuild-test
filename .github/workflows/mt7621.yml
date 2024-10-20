@@ -10,7 +10,6 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: configs/mt7621.config
   DIY_SCRIPT: diy-newifi3.sh
-  KMODS_SCRIPT: scripts/compile_kmods.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
