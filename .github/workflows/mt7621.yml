@@ -83,6 +83,8 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        # 将config设置为所有软件
+        sed -i 's/# CONFIG_ALL .*/CONFIG_ALL=y/' .config
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
@@ -118,7 +120,7 @@ jobs:
         make -j17 target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         # 编译内核模块
         make V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 ./package/kernel/linux/{clean,compile}
-        cd $OPENWRT_PATH/bin/targets/ramips/mt7621/packages
+        make package/compile -i -j V=99
         echo "All modules have been compiled."
 
     - name: Organize Files(整理文件)
@@ -127,7 +129,7 @@ jobs:
         mv -f $OPENWRT_PATH/bin/targets/ramips/mt7621/packages/* kmods
         tar -zcf kmods.tar.gz kmods
         rm -rf packages feeds.buildinfo version.buildinfo kmods
-        echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV        
+        echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
         
     - name: Upload Firmware To Artifact(将固件上传到Artifact)
       uses: actions/upload-artifact@main
