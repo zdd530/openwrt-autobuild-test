@@ -145,14 +145,15 @@ jobs:
         name: ${{ env.SOURCE_REPO }}-packages-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE_PATH }}/Packages.tar.gz
 
-    - name: Upload kmod To Release(发布kmod)
+    - name: Upload kmod and Packages To Release(发布kmod和Packages)
       uses: ncipollo/release-action@v1
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
         tag: ${{ env.FIRMWARE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/kmods.tar.gz
+        artifacts: |
+          ${{ env.FIRMWARE_PATH }}/kmods.tar.gz,${{ env.FIRMWARE_PATH }}/Packages.tar.gz
         body: |
           **This is OpenWrt kmod Package for ${{ env.FIRMWARE_TAG }}**
           ### 📒 Kmod信息(Newifi3/zte-8820s)
