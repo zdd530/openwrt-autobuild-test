@@ -87,22 +87,7 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
-              
-    - name: Compile Firmware (开始编译kmod)
-      run: |
-        [ -e $KMODS_SCRIPT ] && mv $KMODS_SCRIPT $OPENWRT_PATH/compile_kmods.sh
-        cd $OPENWRT_PATH
-        chmod +x compile_kmods.sh
-        ./compile_kmods.sh
 
-    - name: Organize Files(整理文件)
-      run: |
-        mkdir -p kmods
-        mv -f $OPENWRT_PATH/bin/targets/ramips/mt7621/packages/* kmods
-        tar -zcf kmods.tar.gz kmods
-        rm -rf packages feeds.buildinfo version.buildinfo
-        echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
-        
     - name: Download DL Package(下载DL软件包)
       run: |
         cd $OPENWRT_PATH
@@ -124,6 +109,22 @@ jobs:
         ccache: false
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
+              
+    - name: Compile Firmware (开始编译kmod)
+      run: |
+        [ -e $KMODS_SCRIPT ] && mv $KMODS_SCRIPT $OPENWRT_PATH/compile_kmods.sh
+        cd $OPENWRT_PATH
+        chmod +x compile_kmods.sh
+        ./compile_kmods.sh
+
+    - name: Organize Files(整理文件)
+      run: |
+        mkdir -p kmods
+        mv -f $OPENWRT_PATH/bin/targets/ramips/mt7621/packages/* kmods
+        tar -zcf kmods.tar.gz kmods
+        rm -rf packages feeds.buildinfo version.buildinfo
+        echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
+        
         
     - name: Upload Firmware To Artifact(将固件上传到Artifact)
       uses: actions/upload-artifact@main
@@ -131,7 +132,7 @@ jobs:
         name: ${{ env.SOURCE_REPO }}-firmware-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE_PATH }}/kmods.tar.gz
 
-    - name: Upload Firmware To Release(发布固件)
+    - name: Upload kmod To Release(发布kmod)
       uses: ncipollo/release-action@v1
       with:
         name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
@@ -140,14 +141,12 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/kmods.tar.gz
         body: |
-          **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
-          ### 📒 固件信息(Newifi3/zte-8820s)
-          - Newifi3/zte-8820s带MTKOFFLOAD的固件
-          - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 immortalwrt 固件
+          **This is OpenWrt kmod Package for ${{ env.FIRMWARE_TAG }}**
+          ### 📒 Kmod信息(Newifi3/zte-8820s)
+          - for Newifi3/zte-8820s带MTKOFFLOAD的固件
+          - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 immortalwrt 固件kmod包
           - ⚽ 固件源码: ${{ env.REPO_URL }}
           - 💝 源码分支: ${{ env.REPO_BRANCH }}
-          - 🌐 默认地址: 192.168.9.1
-          - 🔑 默认密码: password
           ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - ${{ env.VERSION_INFO }}
