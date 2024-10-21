@@ -86,7 +86,7 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         # 将config设置为所有软件
-        sed -i 's/# CONFIG_ALL .*/CONFIG_ALL=y/' .config
+        # sed -i 's/# CONFIG_ALL .*/CONFIG_ALL=y/' .config
         $GITHUB_WORKSPACE/$DIY_SCRIPT
 
     - name: Download DL Package(下载DL软件包)
