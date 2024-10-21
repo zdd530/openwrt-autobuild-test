@@ -122,7 +122,7 @@ jobs:
         # make -j$(expr $(nproc) + 1) V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 ./package/kernel/linux/{clean,compile}
         # make package/compile -i -j$(expr $(nproc) + 1) V=99 LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         # echo "All modules have been compiled."
-        make -j$(expr $(nproc) + 1) IGNORE_ERRORS=y LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 || \
+        make -j$(expr $(nproc) + 1) -k LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 || \
         make -j1 || \
         make -j1 V=s
         
