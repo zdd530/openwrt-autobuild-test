@@ -1,3 +1,4 @@
+
 name: mt7621-packages
 
 on:
@@ -36,7 +37,6 @@ jobs:
         echo -e "$(sudo lshw -short -C memory | grep GiB) \n"
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
-
     - name: Initialization Environment(初始化环境)
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -52,7 +52,6 @@ jobs:
         uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
-
     - name: Combine Disks(合并磁盘)
       uses: easimon/maximize-build-space@master
       with:
@@ -78,7 +77,6 @@ jobs:
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a -f
-
     - name: Load Custom Configuration(加载自定义配置)
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
@@ -86,9 +84,8 @@ jobs:
         chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
         # 将config设置为所有软件
-        # sed -i 's/# CONFIG_ALL .*/CONFIG_ALL=y/' .config
+        sed -i 's/# CONFIG_ALL .*/CONFIG_ALL=y/' .config
         $GITHUB_WORKSPACE/$DIY_SCRIPT
-
     - name: Download DL Package(下载DL软件包)
       run: |
         cd $OPENWRT_PATH
@@ -110,7 +107,7 @@ jobs:
         ccache: false
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
-
+              
     - name: Compile Kmod (开始编译kmod)
       run: |
         cd $OPENWRT_PATH
@@ -120,9 +117,8 @@ jobs:
         make -j$(expr $(nproc) + 1) target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         # 编译内核模块
         make -j$(expr $(nproc) + 1) V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7 ./package/kernel/linux/{clean,compile}
-        # make package/compile -i -j$(expr $(nproc) + 1) V=99 LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
+        make package/compile -i -j$(expr $(nproc) + 1) V=99 LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         echo "All modules have been compiled."
-
     - name: Organize Files(整理文件)
       run: |
         mkdir -p kmods
