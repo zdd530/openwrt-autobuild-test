@@ -85,6 +85,7 @@ jobs:
         # 将config设置为所有软件
         sed -i 's/# CONFIG_ALL .*/CONFIG_ALL=y/' .config
         $GITHUB_WORKSPACE/$DIY_SCRIPT
+        
     - name: Download DL Package(下载DL软件包)
       run: |
         cd $OPENWRT_PATH
@@ -111,7 +112,7 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         # 生成key
-        ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c openwrt
+        # ./staging_dir/host/bin/usign -G -s ./key-build -p ./key-build.pub -c openwrt
         # 编译内核
         make -j$(expr $(nproc) + 1) target/linux/{clean,compile} V=s LINUX_VERMAGIC:=00bdd56aed0992cf77d7e3c1c49495e7
         # 编译内核模块
