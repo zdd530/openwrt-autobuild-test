@@ -191,17 +191,6 @@ fix_build_for_openssl() {
     fi
 }
 
-update_ath11k_fw() {
-    local makefile="$OPENWRT_PATH/package/firmware/ath11k-firmware/Makefile"
-    local new_mk="$BASE_PATH/patches/ath11k_fw.mk"
-
-    if [ -d "$(dirname "$makefile")" ] && [ -f "$makefile" ]; then
-        [ -f "$new_mk" ] && \rm -f "$new_mk"
-        curl -L -o "$new_mk" https://raw.githubusercontent.com/VIKINGYFY/immortalwrt/refs/heads/main/package/firmware/ath11k-firmware/Makefile
-        \mv -f "$new_mk" "$makefile"
-    fi
-}
-
 chanage_cpuusage() {
     local luci_dir="$OPENWRT_PATH/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci"
     local imm_script1="$OPENWRT_PATH/package/base-files/files/etc/uci-defaults/992_luci-NSS-Load.sh"
