@@ -137,7 +137,5 @@ if ! grep -q "small-package" "$OPENWRT_PATH/feeds.conf.default"; then
 fi
 
 ./scripts/feeds update -a
-rm -rf feeds/small8/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd*,miniupnpd-iptables,wireless-regdb}
 ./scripts/feeds install -a
-./scripts/feeds install -a -p small8 -f
 
