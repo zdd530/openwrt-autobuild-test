@@ -138,3 +138,4 @@ fi
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+./scripts/feeds install -a -p small8 -f
