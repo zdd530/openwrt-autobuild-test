@@ -10,6 +10,7 @@ env:
   REPO_BRANCH: main
   CONFIG_FILE: configs/jdc_ax1800_pro.config
   DIY_SCRIPT: diy-jdc_ax1800_pro-script.sh
+  SYS_PATCH: patches/400-fix_nft_miniupnp.patch
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
@@ -88,6 +89,13 @@ jobs:
         ccache: false
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
+
+    - name: Apply Patch（应用upnp补丁）
+      run: |
+        [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
+        cd $OPENWRT_PATH
+        git apply --check modification.patch
+        rm  modification.patch
     
     - name: Install Feeds(安装feeds)
       run: |
