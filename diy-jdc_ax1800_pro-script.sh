@@ -109,19 +109,6 @@ date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
 sed -i "s/${orig_version}/R${date_version} by Haiibo/g" package/lean/default-settings/files/zzz-default-settings
 
-# 修复miniupnp
-fix_miniupnpd() {
-    local PKG_HASH=$(awk -F"=" '/^PKG_HASH:/ {print $2}' ./feeds/packages/net/miniupnpd/Makefile)
-    if [[ $PKG_HASH == "fbdd5501039730f04a8420ea2f8f54b7df63f9f04cde2dc67fa7371e80477bbe" ]]; then
-        if [[ -f $BASE_PATH/patches/400-fix_nft_miniupnp.patch ]]; then
-            if [[ ! -d ./feeds/packages/net/miniupnpd/patches ]]; then
-                mkdir -p ./feeds/packages/net/miniupnpd/patches
-            fi
-            \cp -f $BASE_PATH/patches/400-fix_nft_miniupnp.patch ./feeds/packages/net/miniupnpd/patches/
-        fi
-    fi
-}
-
 # 修复 hostapd 报错
 # cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
