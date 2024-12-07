@@ -94,8 +94,10 @@ jobs:
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         chmod +x $DIY_SCRIPT
-        cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
+        cd $OPENWRT_PATH
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
   
     - name: Load Custom Configuration(加载自定义配置)
       run: |
