@@ -112,12 +112,12 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Apply Patch（应用upnp补丁）
-      run: |
-        [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
-        cd $OPENWRT_PATH
-        git apply --check modification.patch
-        rm  modification.patch
+#    - name: Apply Patch（应用upnp补丁）
+#      run: |
+#        [ -e $SYS_PATCH ] && mv $SYS_PATCH $OPENWRT_PATH/modification.patch
+#        cd $OPENWRT_PATH
+#        git apply --check modification.patch
+#        rm  modification.patch
 
     - name: Compile Firmware(开始编译固件)
       id: compile
