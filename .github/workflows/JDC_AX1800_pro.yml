@@ -122,11 +122,11 @@ jobs:
                   mkdir -p ./feeds/packages/net/miniupnpd/patches
                fi
              \cp -f $SYS_PATCH ./feeds/packages/net/miniupnpd/patches/
+             cd ./feeds/packages/net/miniupnpd/patches
+             git apply --check modification.patch
+             rm  modification.patch
              fi
-           fi
-        cd ./feeds/packages/net/miniupnpd/patches/
-        git apply --check modification.patch
-        rm  modification.patch
+           fi          
 
     - name: Compile Firmware(开始编译固件)
       id: compile
