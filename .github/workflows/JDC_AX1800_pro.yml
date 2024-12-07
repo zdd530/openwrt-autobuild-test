@@ -112,22 +112,6 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: Apply Patch（应用upnp补丁）
-      run: |
-        cd $OPENWRT_PATH
-        local PKG_HASH=$(awk -F"=" '/^PKG_HASH:/ {print $2}' ./feeds/packages/net/miniupnpd/Makefile)
-           if [[ $PKG_HASH == "fbdd5501039730f04a8420ea2f8f54b7df63f9f04cde2dc67fa7371e80477bbe" ]]; then
-             if [[ -f $SYS_PATCH ]]; then
-               if [[ ! -d ./feeds/packages/net/miniupnpd/patches ]]; then
-                  mkdir -p ./feeds/packages/net/miniupnpd/patches
-               fi
-             \cp -f $SYS_PATCH ./feeds/packages/net/miniupnpd/patches/
-             cd ./feeds/packages/net/miniupnpd/patches
-             git apply --check modification.patch
-             rm  modification.patch
-             fi
-           fi          
-
     - name: Compile Firmware(开始编译固件)
       id: compile
       run: |
