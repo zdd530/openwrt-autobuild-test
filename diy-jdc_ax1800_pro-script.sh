@@ -129,9 +129,6 @@ function git_sparse_clone() {
 
 # 检查并添加 small-package 源
 if ! grep -q "small-package" "$OPENWRT_PATH/feeds.conf.default"; then
-    # 确保文件以换行符结尾
-    [ -z "$(tail -c 1 "$OPENWRT_PATH/feeds.conf")" ] || echo "" >>"$OPENWRT_PATH/feeds.conf.default"
-    
-    # 添加 small-package 源
-    echo "src-git small8 https://github.com/kenzok8/small-package" >>"$OPENWRT_PATH/feeds.conf.default"
+    sed -i '/sqm_scripts_nss/d' feeds.conf.default
+    sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 fi
