@@ -92,10 +92,10 @@ jobs:
  
     - name: Install Feeds(安装feeds)
       run: |
-        [ -e files ] && mv files $OPENWRT_PATH/files
-        cd $OPENWRT_PATH
+        [ -e files ] && mv files $OPENWRT_PATH/files       
         chmod +x $DIY_SCRIPT
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
+        cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
   
