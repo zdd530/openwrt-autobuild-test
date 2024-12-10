@@ -38,9 +38,22 @@ remove_unwanted_packages() {
     fi
 }
 
-remove_unwanted_packages
+install_feeds() {
+    ./scripts/feeds update -i
+    for dir in ./feeds/*; do
+        # 检查是否为目录并且不以 .tmp 结尾，并且不是软链接
+        if [ -d "$dir" ] && [[ ! "$dir" == *.tmp ]] && [ ! -L "$dir" ]; then
+            if [[ $(basename "$dir") == "small8" ]]; then
+                install_small8
+            else
+                ./scripts/feeds install -f -ap $(basename "$dir")
+            fi
+        fi
+    done
+}
 
-./scripts/feeds install -p small8 -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
+install_small8() {
+    ./scripts/feeds install -p small8 -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
         naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata v2ray-geoview v2ray-plugin \
         tuic-client chinadns-ng ipt2socks tcping trojan-plus simple-obfs shadowsocksr-libev \
         luci-app-passwall alist luci-app-alist smartdns luci-app-smartdns v2dat mosdns luci-app-mosdns \
@@ -48,3 +61,9 @@ remove_unwanted_packages
         luci-app-store quickstart luci-app-quickstart luci-app-istorex luci-app-cloudflarespeedtest \
         luci-theme-argon netdata luci-app-netdata lucky luci-app-lucky luci-app-openclash mihomo \
         luci-app-mihomo luci-app-homeproxy
+}
+
+
+remove_unwanted_packages
+install_feeds
+
