@@ -10,6 +10,7 @@ env:
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/jdc_ax1800_pro.config
   DIY_SCRIPT: diy-jdc_ax1800_pro-script.sh
+  FEEDS_DIY: feedsdiy.sh
   SYS_PATCH: patches/400-fix_nft_miniupnp.patch
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
@@ -98,6 +99,8 @@ jobs:
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        chmod +x $FEEDS_DIY
+        bash $GITHUB_WORKSPACE/$FEEDS_DIY
   
     - name: Load Custom Configuration(加载自定义配置)
       run: |
