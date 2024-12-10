@@ -38,6 +38,7 @@ remove_unwanted_packages() {
     fi
 }
 
+remove_unwanted_packages
 
 ./scripts/feeds install -p small8 -f xray-core xray-plugin dns2tcp dns2socks haproxy hysteria \
         naiveproxy shadowsocks-rust sing-box v2ray-core v2ray-geodata v2ray-geoview v2ray-plugin \
