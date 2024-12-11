@@ -99,13 +99,14 @@ jobs:
         cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-openclash
   
     - name: Load Custom Configuration(加载自定义配置)
       run: |
-        chmod +x $FEEDS_DIY
         cd $OPENWRT_PATH
-        bash $GITHUB_WORKSPACE/$FEEDS_DIY
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+#        chmod +x $FEEDS_DIY
+#        bash $GITHUB_WORKSPACE/$FEEDS_DIY
         
     - name: Download DL Package(下载DL软件包)
       run: |
