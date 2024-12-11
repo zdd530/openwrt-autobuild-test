@@ -2,7 +2,6 @@
 # shellcheck disable=SC2086,SC3043,SC2164,SC2103,SC2046,SC2155
 
 rm -rf feeds/packages/net/mosdns
-rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-passwall
 
@@ -57,7 +56,7 @@ rm -rf feeds/luci/applications/luci-app-passwall
 # }
 
 install_small8() {
-    ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-mosdns luci-app-openclash
+    ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-openclash
  }
 
 
