@@ -105,7 +105,6 @@ jobs:
         chmod +x $FEEDS_DIY
         cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
-        continue-on-error: true
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
         
     - name: Download DL Package(下载DL软件包)
