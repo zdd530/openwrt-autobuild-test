@@ -62,5 +62,5 @@ install_small8() {
 
 
 # remove_unwanted_packages
-install_feeds
+install_small8
 
