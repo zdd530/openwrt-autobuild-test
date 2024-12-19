@@ -67,6 +67,7 @@ rm -rf feeds/luci/applications/luci-app-argon-config
 
 install_small8() {
     ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-mosdns luci-app-openclash luci-app-poweroff luci-theme-argon luci-app-argon-config
+    adguardhome luci-app-adguardhome
  }
 
 
