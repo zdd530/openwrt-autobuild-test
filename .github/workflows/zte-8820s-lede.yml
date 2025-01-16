@@ -15,7 +15,7 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: 8820s
+  FIRMWARE_TAG: LEDE_for_zte_8820s
   TZ: Asia/Shanghai
 
 jobs:
