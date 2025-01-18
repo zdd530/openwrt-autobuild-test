@@ -81,7 +81,7 @@ jobs:
         chmod +x $DIY_SCRIPT
         chmod +x $FEEDS_DIY
         chmod +x $ADD_FEEDS
-        bash $GITHUB_WORKSPACE/ADD_FEEDS
+        bash $GITHUB_WORKSPACE/$ADD_FEEDS
         cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
         ./scripts/feeds update -a
