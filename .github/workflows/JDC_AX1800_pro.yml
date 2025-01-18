@@ -10,6 +10,7 @@ env:
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/jdc_ax1800_pro.config
   DIY_SCRIPT: diy-jdc_ax1800_pro-script.sh
+  FIX_UPNPD: fix_upnpd.sh
   FEEDS_DIY: feedsdiy.sh
   ADD_FEEDS: add_feeds.sh
   SYS_PATCH: patches/400-fix_nft_miniupnp.patch
@@ -92,15 +93,17 @@ jobs:
         mixkey: ${{ env.SOURCE_REPO }}-${{ env.REPO_BRANCH }}-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
         prefix: ${{ env.OPENWRT_PATH }}
  
-    - name: Install Feeds(安装feeds)
+    - name: Install Feeds&Fix Bugs&Apply Custom Settings(安装feeds&修复问题&应用自定义设置)
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files       
         chmod +x $DIY_SCRIPT
         chmod +x $FEEDS_DIY
         chmod +x $ADD_FEEDS
+        chmod +x $FIX_UPNPD
         bash $GITHUB_WORKSPACE/$ADD_FEEDS
-        bash $GITHUB_WORKSPACE/$DIY_SCRIPT
+        bash $GITHUB_WORKSPACE/$FIX_UPNPD
         cd $OPENWRT_PATH
+        bash $GITHUB_WORKSPACE/$DIY_SCRIPT
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
