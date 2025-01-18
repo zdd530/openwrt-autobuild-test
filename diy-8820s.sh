@@ -14,7 +14,7 @@
 
 # Clean up dependencies
 # find feeds -name Makefile -exec dirname {} \; | grep -wE 'gn|chinadns-ng|dns2socks|dns2tcp|hysteria|ipt2socks|microsocks|naiveproxy|redsocks2|shadowsocks-rust|shadowsocksr-libev|simple-obfs|sing-box|ssocks|tcping|trojan|v2ray-core|v2ray-geodata|v2ray-plugin|v2raya|xray-core|xray-plugin|lua-neturl|luci-app-ssr-plus|kuci-app-mosdns|mosdns' | xargs rm -rf
-rm -rf feeds/luci/applications/luci-app-passwall
+# rm -rf feeds/luci/applications/luci-app-passwall
 
 # Modify Default IP
 sed -i 's/192.168.1.1/192.168.3.1/g' package/base-files/files/bin/config_generate
@@ -26,10 +26,16 @@ sed -i 's/192.168.1.1/192.168.3.1/g' package/base-files/files/bin/config_generat
 # git clone --depth=1 https://github.com/sbwml/luci-app-mosdns package/mosdns
 # git clone --depth=1 https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 
 # Update Go to 1.20 for Xray-core build
 # rm -rf feeds/packages/lang/golang
 # git_sparse_clone https://github.com/openwrt/packages master packages-upstream lang/golang feeds/packages/lang/golang
-./scripts/feeds update -a
-./scripts/feeds install -a
+
+# 检查并添加 small-package 源
+if ! grep -q "small-package" "$OPENWRT_PATH/feeds.conf.default"; then
+    sed -i '$a src-git small8 https://github.com/kenzok8/small-package' $OPENWRT_PATH/feeds.conf.default
+fi
+
+# ./scripts/feeds update -a
+# ./scripts/feeds install -a
