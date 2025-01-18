@@ -10,6 +10,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: configs/8820s.config
   DIY_SCRIPT: diy-8820s.sh
+  FEEDS_DIY: feedsdiy.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
