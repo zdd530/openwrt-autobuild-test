@@ -33,9 +33,9 @@ sed -i 's/192.168.1.1/192.168.3.1/g' package/base-files/files/bin/config_generat
 # git_sparse_clone https://github.com/openwrt/packages master packages-upstream lang/golang feeds/packages/lang/golang
 
 # 检查并添加 small-package 源
-if ! grep -q "small-package" "$OPENWRT_PATH/feeds.conf.default"; then
-    sed -i '$a src-git small8 https://github.com/kenzok8/small-package' $OPENWRT_PATH/feeds.conf.default
-fi
+# if ! grep -q "small-package" "$OPENWRT_PATH/feeds.conf.default"; then
+#     sed -i '$a src-git small8 https://github.com/kenzok8/small-package' $OPENWRT_PATH/feeds.conf.default
+# fi
 
 # ./scripts/feeds update -a
 # ./scripts/feeds install -a
