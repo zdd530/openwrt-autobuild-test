@@ -99,8 +99,8 @@ jobs:
         chmod +x $FEEDS_DIY
         chmod +x $ADD_FEEDS
         bash $GITHUB_WORKSPACE/$ADD_FEEDS
-        cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
+        cd $OPENWRT_PATH
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
