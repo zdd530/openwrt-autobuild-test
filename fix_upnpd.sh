@@ -1,4 +1,7 @@
 #!/bin/bash
+source /etc/profile
+BASE_PATH=$(cd $(dirname $0) && pwd)
+
 # 修复24.10版本upnpd
 fix_miniupnpd() {
     local PKG_HASH=$(awk -F"=" '/^PKG_HASH:/ {print $2}' ./feeds/packages/net/miniupnpd/Makefile)
