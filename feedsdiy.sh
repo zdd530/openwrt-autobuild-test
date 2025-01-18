@@ -77,8 +77,9 @@ rm -rf feeds/packages/net/xray-core
 install_small8() {
     ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-mosdns \
     luci-app-openclash luci-app-poweroff luci-theme-argon luci-app-argon-config\
-    luci-app-adguardhome
- }
+    luci-app-adguardhome luci-app-ssr-plus trojan-plus v2ray-geodata v2ray-plugin\
+    v2ray-core shadowsocks-rust xray-core
+}
 
 fix_miniupmpd() {
     local PKG_HASH=$(awk -F"=" '/^PKG_HASH:/ {print $2}' ./feeds/packages/net/miniupnpd/Makefile)
