@@ -10,6 +10,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: configs/8820s.config
   DIY_SCRIPT: diy-8820s.sh
+  ADD_FEEDS: add_feeds.sh
   FEEDS_DIY: feedsdiy.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
@@ -79,8 +80,10 @@ jobs:
         [ -e files ] && mv files $OPENWRT_PATH/files       
         chmod +x $DIY_SCRIPT
         chmod +x $FEEDS_DIY
-        bash $GITHUB_WORKSPACE/$DIY_SCRIPT
+        chmod +x $ADD_FEEDS
+        bash $GITHUB_WORKSPACE/ADD_FEEDS
         cd $OPENWRT_PATH
+        bash $GITHUB_WORKSPACE/$DIY_SCRIPT
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
