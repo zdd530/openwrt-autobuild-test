@@ -16,6 +16,13 @@ rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-argon-config
+rm -rf feeds/luci/applications/luci-app-ssr-plus
+rm -rf feeds/packages/net/trojan-plus
+rm -rf feeds/packages/net/v2ray-geodata
+rm -rf feeds/packages/net/v2ray-plugin
+rm -rf feeds/packages/net/v2ray-core
+rm -rf feeds/packages/net/shadowsocks-rust
+rm -rf feeds/packages/net/xray-core
 
 # remove_unwanted_packages() {
 #    local luci_packages=(
