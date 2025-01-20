@@ -1,0 +1,27 @@
+From 47b8ee51fb528e11e1a83453b7e767a18d20d1f7 Mon Sep 17 00:00:00 2001
+From: Your Name <your.email@example.com>
+Date: Mon, 16 Oct 2023 12:00:00 +0800
+Subject: [PATCH] Fix v2dat Makefile to disable CGO and set Go environment variables
+
+---
+ packages/utils/v2dat/Makefile | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/packages/utils/v2dat/Makefile b/packages/utils/v2dat/Makefile
+index abcdef1..1234567 100644
+--- a/packages/utils/v2dat/Makefile
++++ b/packages/utils/v2dat/Makefile
+@@ -17,6 +17,11 @@ PKG_MAINTAINER:=sbwml <admin@cooluc.com>
+ PKG_BUILD_DEPENDS:=golang/host
+ PKG_BUILD_PARALLEL:=1
+
++# 禁用 CGO
++GO_BUILD_VARS += CGO_ENABLED=0
++# 设置 Go 环境变量
++GO_BUILD_VARS += GOARCH=mipsle
++GO_BUILD_VARS += GOOS=linux
+ GO_PKG:=github.com/urlesistiana/v2dat
+
+ include $(INCLUDE_DIR)/package.mk
+--
+2.34.1
