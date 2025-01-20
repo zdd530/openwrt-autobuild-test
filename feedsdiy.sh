@@ -23,6 +23,7 @@ rm -rf feeds/packages/net/v2ray-plugin
 rm -rf feeds/packages/net/v2ray-core
 rm -rf feeds/packages/net/shadowsocks-rust
 rm -rf feeds/packages/net/xray-core
+rm -rf feeds/packages/utils/v2dat
 
 # remove_unwanted_packages() {
 #    local luci_packages=(
@@ -78,7 +79,7 @@ install_small8() {
     ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-mosdns \
     luci-app-openclash luci-app-poweroff luci-theme-argon luci-app-argon-config\
     luci-app-adguardhome luci-app-ssr-plus trojan-plus v2ray-geodata v2ray-plugin\
-    v2ray-core shadowsocks-rust xray-core
+    v2ray-core shadowsocks-rust xray-core v2dat
 }
 
 # fix_miniupmpd() {
