@@ -12,6 +12,7 @@ env:
   DIY_SCRIPT: diy-8820s.sh
   ADD_FEEDS: add_feeds.sh
   FEEDS_DIY: feedsdiy.sh
+  FIX_V2DAT: fix_v2dat.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
@@ -95,12 +96,14 @@ jobs:
         chmod +x $DIY_SCRIPT
         chmod +x $FEEDS_DIY
         chmod +x $ADD_FEEDS
+        chmod +x $FIX_V2DAT
         bash $GITHUB_WORKSPACE/$ADD_FEEDS
         cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
+        bash $GITHUB_WORKSPACE/$FIX_V2DAT
 
     - name: Load Custom Configuration(加载自定义配置)
       run: |
