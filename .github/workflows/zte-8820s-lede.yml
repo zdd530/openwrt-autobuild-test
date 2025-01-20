@@ -55,6 +55,20 @@ jobs:
         sudo -E apt-get -y clean
         sudo timedatectl set-timezone "$TZ"
 
+    - name: Install Latest Go Toolchain(安装最新 Go 工具链)
+      run: |
+        # 下载并安装 Go 1.21.0
+        wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+        export PATH=$PATH:/usr/local/go/bin
+        echo "PATH=$PATH:/usr/local/go/bin" >> $GITHUB_ENV
+        echo "GOROOT=/usr/local/go" >> $GITHUB_ENV
+        echo "GOPATH=$HOME/go" >> $GITHUB_ENV
+        echo "GOARCH=mipsle" >> $GITHUB_ENV
+        echo "GOOS=linux" >> $GITHUB_ENV
+        echo "CGO_ENABLED=0" >> $GITHUB_ENV
+        go version
+    
     - name: Combine Disks(合并磁盘)
       uses: easimon/maximize-build-space@master
       with:
