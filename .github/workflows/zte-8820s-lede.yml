@@ -163,7 +163,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
-          **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
+          **This is OpenWrt(LEDE) Firmware ${{ env.FIRMWARE_TAG }}**
           ### 📒 固件信息(8820s闭源固件)
           - LEDE-zte-8820s带hwnat的固件
           - 💻 这是 ${{ env.FIRMWARE_TAG }} 平台使用的 lede 固件
