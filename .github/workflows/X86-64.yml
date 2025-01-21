@@ -14,6 +14,7 @@ env:
   FEEDS_DIY: feedsdiy.sh
   FIX_UPNPD: fix_upnpd.sh
   ADD_FEEDS: add_feeds.sh
+  SET_DHCP: set_dhcp.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
@@ -109,6 +110,7 @@ jobs:
         chmod +x $ADD_FEEDS
         chmod +x $FIX_UPNPD
         bash $GITHUB_WORKSPACE/$ADD_FEEDS
+        bash $GITHUB_WORKSPACE/$SET_DHCP
         cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
         ./scripts/feeds update -a
