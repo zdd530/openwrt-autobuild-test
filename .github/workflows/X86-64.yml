@@ -172,9 +172,14 @@ jobs:
     - name: Prepare Docker build context
       run: |
         mkdir -p docker/openwrt
-        cp $OPENWRT_PATH/bin/targets/x86/64/immortalwrt-x86-64-generic-rootfs.tar.gz docker/openwrt/
+        FIRMWARE_PATH=$(find $OPENWRT_PATH/bin/targets -name "immortalwrt-x86-64-generic-rootfs.tar.gz" | head -n 1)
+        if [ -z "$FIRMWARE_PATH" ]; then
+          echo "Error: Firmware file not found!"
+          exit 1
+        fi
+        cp "$FIRMWARE_PATH" docker/openwrt/
         echo "FROM scratch" > docker/openwrt/Dockerfile
-        echo "ADD immortalwrt-x86-64-generic-rootfs.tar.gz /" >> docker/openwrt/Dockerfile
+        echo "ADD $(basename "$FIRMWARE_PATH") /" >> docker/openwrt/Dockerfile
         
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
@@ -185,8 +190,10 @@ jobs:
     - name: Build and push Docker image
       run: |
         cd docker/openwrt
-        docker build -t ${{ env.DOCKER_REPO }}:${{ env.DOCKER_TAG }} .
-        docker push ${{ env.DOCKER_REPO }}:${{ env.DOCKER_TAG }}
+        docker build -t ${{ env.DOCKER_REPO }}:${{ env.FILE_DATE }} .
+        docker push ${{ env.DOCKER_REPO }}:${{ env.FILE_DATE }}
+        docker tag ${{ env.DOCKER_REPO }}:${{ env.FILE_DATE }} ${{ env.DOCKER_REPO }}:latest
+        docker push ${{ env.DOCKER_REPO }}:latest
 
     - name: Upload Firmware To Artifact(将固件上传到Artifact)
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE != 'true'
