@@ -2,7 +2,8 @@
 
 # 设置 LAN 口的 DHCP 为关闭状态
 set_dhcp_off() {
-    DHCP_CONF_PATH="/package/network/services/dnsmasq/files/dhcp.conf"
+    # 使用 find 命令获取 dhcp.conf 文件的绝对路径
+    DHCP_CONF_PATH=$(find $GITHUB_WORKSPACE/openwrt -name "dhcp.conf" -exec realpath {} \;)
     
     # 打印实际路径
     echo "DHCP 配置文件路径: $DHCP_CONF_PATH"
