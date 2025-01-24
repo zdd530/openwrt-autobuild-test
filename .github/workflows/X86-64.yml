@@ -112,8 +112,8 @@ jobs:
         chmod +x $ADD_FEEDS
         chmod +x $FIX_UPNPD
         bash $GITHUB_WORKSPACE/$ADD_FEEDS
-        cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$SET_DHCP
+        cd $OPENWRT_PATH
         bash $GITHUB_WORKSPACE/$DIY_SCRIPT
         ./scripts/feeds update -a
         ./scripts/feeds install -a
