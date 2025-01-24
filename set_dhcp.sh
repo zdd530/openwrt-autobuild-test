@@ -2,8 +2,8 @@
 
 # 设置 LAN 口的 DHCP 为关闭状态
 set_dhcp_off() {
-    # 使用 find 命令获取 dhcp.conf 文件的绝对路径
-    DHCP_CONF_PATH=$(find $GITHUB_WORKSPACE/openwrt -name "dhcp.conf" -exec realpath {} \;)
+    # 使用 find 命令在较小范围内获取 dhcp.conf 文件的绝对路径
+    DHCP_CONF_PATH=$(find $GITHUB_WORKSPACE/openwrt/package/network/services/dnsmasq/files -name "dhcp.conf" -exec realpath {} \;)
     
     # 打印实际路径
     echo "DHCP 配置文件路径: $DHCP_CONF_PATH"
@@ -15,7 +15,7 @@ set_dhcp_off() {
     fi
     
     # 使用 sed 修改配置文件
-    sed -i "/config dhcp lan/,/^[[:space:]]*$/ {/^[[:space:]]*$/i\\	option ignore	1}" "$DHCP_CONF_PATH"
+    sed -i "/config dhcp lan/,/^[[:space:]]*$/ {/^[[:space:]]*$/a\\	option ignore	1}" "$DHCP_CONF_PATH"
     echo "LAN 口的 DHCP 服务已设置为默认关闭。"
 }
 
