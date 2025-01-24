@@ -15,7 +15,7 @@ set_dhcp_off() {
     fi
     
     # 使用 sed 修改配置文件
-    sed -i "/config dhcp lan/,/^[[:space:]]*$/ {/^[[:space:]]*$/a\\	option ignore	1}" "$DHCP_CONF_PATH"
+    sed -i "/config dhcp lan/,/^[[:space:]]*$/ { /^[[:space:]]*$/i\\	option ignore	1 }" "$DHCP_CONF_PATH"
     echo "LAN 口的 DHCP 服务已设置为默认关闭。"
 }
 
