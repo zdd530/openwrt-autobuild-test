@@ -3,7 +3,7 @@
 source /etc/profile
 BASE_PATH=$(cd $(dirname $0) && pwd)
 
-rm -rf feeds/packages/net/adguardhome
+# rm -rf feeds/packages/net/adguardhome
 rm -rf feeds/packages/net/mosdns
 # rm -rf feeds/packages/net/msd_lite
 # rm -rf feeds/packages/net/smartdns
@@ -79,7 +79,7 @@ install_small8() {
     ./scripts/feeds install -p small8 -f  luci-app-passwall mosdns luci-app-mosdns \
     luci-app-openclash luci-app-poweroff luci-theme-argon luci-app-argon-config\
     luci-app-adguardhome luci-app-ssr-plus trojan-plus v2ray-geodata v2ray-plugin\
-    v2ray-core shadowsocks-rust xray-core v2dat adguardhome
+    v2ray-core shadowsocks-rust xray-core v2dat
 }
 
 # fix_miniupmpd() {
