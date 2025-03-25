@@ -10,7 +10,6 @@ env:
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/jdc_ax1800_pro.config
   DIY_SCRIPT: diy-jdc_ax1800_pro-script.sh
-  FIX_UPNPD: fix_upnpd.sh
   FEEDS_DIY: feedsdiy.sh
   ADD_FEEDS: add_feeds.sh
   SYS_PATCH: patches/400-fix_nft_miniupnp.patch
@@ -106,7 +105,6 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
-        bash $GITHUB_WORKSPACE/$FIX_UPNPD
   
     - name: Load Custom Configuration(加载自定义配置)
       run: |
