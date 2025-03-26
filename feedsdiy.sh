@@ -3,8 +3,8 @@
 source /etc/profile
 BASE_PATH=$(cd $(dirname $0) && pwd)
 
-echo "src-git custom_golang https://github.com/openwrt/packages.git^golang-1.21" >> feeds.conf.default
-./scripts/feeds update custom_golang
+# echo "src-git custom_golang https://github.com/openwrt/packages.git^golang-1.21" >> feeds.conf.default
+# ./scripts/feeds update custom_golang
 
 # rm -rf feeds/packages/net/adguardhome
 rm -rf feeds/packages/net/mosdns
