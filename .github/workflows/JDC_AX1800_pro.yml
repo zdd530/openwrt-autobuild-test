@@ -12,7 +12,6 @@ env:
   DIY_SCRIPT: diy-jdc_ax1800_pro-script.sh
   FEEDS_DIY: feedsdiy.sh
   ADD_FEEDS: add_feeds.sh
-  SYS_PATCH: patches/400-fix_nft_miniupnp.patch
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
