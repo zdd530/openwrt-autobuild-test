@@ -10,6 +10,8 @@ env:
   REPO_BRANCH: main
   CONFIG_FILE: configs/ipq60xx-all.config
   DIY_SCRIPT: diy-script.sh
+  FEEDS_DIY: feedsdiy.sh
+  ADD_FEEDS: add_feeds.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
