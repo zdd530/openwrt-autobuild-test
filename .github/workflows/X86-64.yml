@@ -12,7 +12,6 @@ env:
   FEEDS_FILE: feeds/x86-64.txt
   DIY_SCRIPT: diy-script.sh
   FEEDS_DIY: feedsdiy.sh
-  FIX_UPNPD: fix_upnpd.sh
   ADD_FEEDS: add_feeds.sh
   SET_DHCP: set_dhcp.sh
   CLASH_KERNEL: amd64
@@ -112,7 +111,6 @@ jobs:
         chmod +x $DIY_SCRIPT
         chmod +x $FEEDS_DIY
         chmod +x $ADD_FEEDS
-        chmod +x $FIX_UPNPD
         bash $GITHUB_WORKSPACE/$ADD_FEEDS
         bash $GITHUB_WORKSPACE/$SET_DHCP
         cd $OPENWRT_PATH
@@ -120,7 +118,6 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         bash $GITHUB_WORKSPACE/$FEEDS_DIY
-        bash $GITHUB_WORKSPACE/$FIX_UPNPD
 
     - name: Load Custom Configuration(加载自定义配置)
       run: |
